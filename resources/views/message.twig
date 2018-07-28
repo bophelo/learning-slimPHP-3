@@ -1,0 +1,44 @@
+{% extends 'layouts/main.twig' %}
+
+{% block title %}
+    Message Page
+{% endblock %}
+
+{% block content %}
+<div class="card column is-half is-offset-one-quarter">
+    <header class="card-header">
+        <p class="card-header-title">
+        Message Form
+        </p>
+    </header>
+    <div class="card-content">
+        <form action="{{path_for('message')}}" method="post">
+            <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="e.g Alex Smith">
+            </div>
+            </div>
+
+            <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+                <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com">
+            </div>
+            </div>
+
+            <div class="field">
+            <label class="label">Message</label>
+            <div class="control">
+                <textarea class="textarea" placeholder="e.g. Hello world" cols="30" rows="10"></textarea>
+            </div>
+            </div>
+
+            <div class="control">
+                <button class="button is-primary" type="submit">Send Message</button>
+            </div>
+            
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,7 +1,7 @@
 <?php
 
-/* layouts/app.twig */
-class __TwigTemplate_30dec5ddfe3706c9a8868761a8d541043be855a69bb0a7835124541fc03fc66a extends Twig_Template
+/* layouts/main.twig */
+class __TwigTemplate_3ac0c54d6d570caecbaa74c47a2893bc4f4d993c19f7f23afb7852ba14d513e0 extends Twig_Template
 {
     private $source;
 
@@ -23,48 +23,54 @@ class __TwigTemplate_30dec5ddfe3706c9a8868761a8d541043be855a69bb0a7835124541fc03
     {
         // line 1
         echo "<!DOCTYPE html>
-<html lang=\"en\">
-    <head>
-        <meta charset=\"UTF-8\">
-        <title>";
-        // line 5
+<html>
+  <head>
+    <meta charset=\"utf-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+    <title>";
+        // line 6
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
-    </head>
-    
-    <body>
+    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css\">
+    <script defer src=\"https://use.fontawesome.com/releases/v5.1.0/js/all.js\"></script>
+  </head>
+  <body>
+  <section class=\"section\">
+    <div class=\"container\">
         ";
-        // line 9
+        // line 13
         $this->displayBlock('content', $context, $blocks);
-        // line 11
-        echo "    </body>
+        // line 15
+        echo "    </div>
+  </section>
+  </body>
 </html>";
     }
 
-    // line 5
+    // line 6
     public function block_title($context, array $blocks = array())
     {
     }
 
-    // line 9
+    // line 13
     public function block_content($context, array $blocks = array())
     {
-        // line 10
+        // line 14
         echo "        ";
     }
 
     public function getTemplateName()
     {
-        return "layouts/app.twig";
+        return "layouts/main.twig";
     }
 
     public function getDebugInfo()
     {
-        return array (  53 => 10,  50 => 9,  45 => 5,  40 => 11,  38 => 9,  31 => 5,  25 => 1,);
+        return array (  59 => 14,  56 => 13,  51 => 6,  44 => 15,  42 => 13,  32 => 6,  25 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "layouts/app.twig", "/Users/mpilo/Desktop/Web Dev/slimPHP/learning-slimPHP-3/resources/views/layouts/app.twig");
+        return new Twig_Source("", "layouts/main.twig", "/Users/mpilo/Desktop/Web Dev/slimPHP/learning-slimPHP-3/resources/views/layouts/main.twig");
     }
 }

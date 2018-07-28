@@ -69,4 +69,16 @@ $app->post('/contact', function ($request,$response) {
     var_dump($request->getParams());//can also be used for pagination???
 })->setName('contact');
 
+$app->get('/message', function ($request,$response) {
+    return $this->view->render($response, 'message.twig');
+})->setName('message');
+
+$app->post('/message', function ($request,$response) {
+    return $response->withRedirect('http://localhost:8888/message/confirm');
+})->setName('message');
+
+$app->get('/message/confirm', function ($request,$response) {
+    return $this->view->render($response, 'message_confirmed.twig');
+});
+
 $app->run();
