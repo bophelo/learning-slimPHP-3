@@ -81,4 +81,15 @@ $app->get('/message/confirm', function ($request,$response) {
     return $this->view->render($response, 'message_confirmed.twig');
 });
 
+$app->get('/userz/{id}', function ($request,$response, $args) { //[/]parameter is optional
+    $user = [
+        'id' => $args['id'],
+        'username' => 'Billy',
+        'name' => 'Billy Garret',
+        'email' => 'billz@mail.com'
+    ];
+
+    return $this->view->render($response, 'profile.twig', compact('user'));
+});
+
 $app->run();
