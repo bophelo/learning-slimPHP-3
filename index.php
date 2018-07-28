@@ -66,8 +66,7 @@ $app->get('/contact', function ($request,$response) {
 })->setName('contact');
 
 $app->post('/contact', function ($request,$response) {
-    die('Contact');
-    //return $this->view->render($response, 'contact.twig');
+    var_dump($request->getParams());//can also be used for pagination???
 })->setName('contact');
 
 $app->run();
