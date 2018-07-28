@@ -32,7 +32,33 @@ $app->get('/', function ($request, $response) {
 });
 
 $app->get('/users', function ($request, $response) {
-    return $this->view->render($response,'users.twig');
+    $users = [
+        [
+            'username' => 'mikey',
+            'name' => 'Michael Geng',
+            'email' => 'mike.geng@mail.com'
+        ],
+        [
+            'username' => 'terry',
+            'name' => 'Terrance Lamar',
+            'email' => 'terrance@mail.com'
+        ],
+        [
+            'username' => 'jamesy',
+            'name' => 'James Francesco',
+            'email' => 'francesco.james@mail.com'
+        ]
+    ];
+
+    /*$user = [
+        'username' => 'Billy',
+        'name' => 'Billy Garret',
+        'email' => 'billz@mail.com'
+    ];*/
+
+    return $this->view->render($response,'users.twig', [
+        'users' => $users,
+    ]);
 });
 
 $app->run();
