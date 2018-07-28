@@ -29,7 +29,7 @@ $container['view'] = function ($container) {
 //routes
 $app->get('/', function ($request, $response) {
     return $this->view->render($response,'home.twig');
-});
+})->setName('home');
 
 $app->get('/users', function ($request, $response) {
     $users = [
@@ -59,6 +59,6 @@ $app->get('/users', function ($request, $response) {
     return $this->view->render($response,'users.twig', [
         'users' => $users,
     ]);
-});
+})->setName('users.index');
 
 $app->run();
