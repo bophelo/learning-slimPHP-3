@@ -15,7 +15,7 @@ $container  = $app->getContainer();
 
 // Register component on container
 $container['view'] = function ($container) {
-    $view = new \Slim\Views\Twig(__DIR__ . 'resources/views', [
+    $view = new \Slim\Views\Twig(__DIR__ . '/resources/views', [
         'cache' => 'false'
     ]);
 
@@ -27,8 +27,12 @@ $container['view'] = function ($container) {
 };
 
 //routes
-$app->get('/', function () {
-    echo $this->view;
+$app->get('/', function ($request, $response) {
+    return $this->view->render($response,'home.twig');
+});
+
+$app->get('/users', function ($request, $response) {
+    return $this->view->render($response,'users.twig');
 });
 
 $app->run();
