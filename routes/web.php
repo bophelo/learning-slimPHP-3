@@ -107,5 +107,5 @@ $app->get('/uzers', UserController::class . ':index');
 
 $app->group('/subjects', function() {
     $this->get('', SubjectController::class . ':index');
-    $this->get('/{id}', SubjectController::class . ':show');
+    $this->get('/{id}', SubjectController::class . ':show')->setName('subjects.show');
 });

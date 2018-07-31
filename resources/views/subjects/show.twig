@@ -5,12 +5,8 @@
 {% endblock %}
 
 {% block content %}
-    {% for topic in topics %}
-
         <div class="topic">
-            <h3><a href="{{ path_for('subjects.show', {id: topic.id}) }}"> {{ topic.title }}</a></h3>
+            <h3>{{ topic.title }}</h3>
             <p>{{ topic.body }}</p>
         </div>
-
-    {% endfor %}
 {% endblock %}

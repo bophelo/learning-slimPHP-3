@@ -13,6 +13,10 @@ $app = new \Slim\App([
 //not reinstantiated multiple times
 $container  = $app->getContainer();
 
+/*$container['db'] = function () {
+    return new PDO('mysql:host=localhost;dbname=slim','root','&6rUB3,_9EyD');
+};*/
+
 $container['db'] = function () {
     return new PDO('mysql:host=localhost;dbname=slim','root','&6rUB3,_9EyD');
 };
