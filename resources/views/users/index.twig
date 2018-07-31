@@ -1,0 +1,17 @@
+{% extends 'layouts/app.twig' %}
+
+{% block title %}
+    User Index Page
+{% endblock %}
+
+{% block content %}
+        {% for user in users %}
+        
+            <h3>{{ user.username }}</h3>
+            <ul>
+                <li>{{ user.email }}</li>
+                <li>{{ user.fullName()}} ({{ user.getFormattedBalance() }})</li>
+            </ul>
+
+        {% endfor %}
+{% endblock %}
