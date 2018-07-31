@@ -92,4 +92,20 @@ $app->get('/userz/{id}', function ($request,$response, $args) { //[/]parameter i
     return $this->view->render($response, 'profile.twig', compact('user'));
 });
 
+$app->group('/topics', function () {
+
+    $this->get('', function () {
+        echo 'Topic List';
+    });
+
+    $this->get('/{id}', function ($request, $response, $args) {
+        echo 'Topic ' . $args['id'];
+    });
+
+    $this->post('', function () {
+        echo 'Post Topic';
+    });
+
+});
+
 $app->run();
