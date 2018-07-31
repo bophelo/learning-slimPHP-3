@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use App\Controllers\SubjectController;
+use App\Controllers\UserController;
 
 $app->get('/', function ($request, $response) {
     return $this->view->render($response,'home.twig');
@@ -101,6 +102,8 @@ $app->get('/uzer', function() {
     $user = new User;
     var_dump($user);
 });
+
+$app->get('/uzers', UserController::class . ':index');
 
 $app->group('/subjects', function() {
     $this->get('', SubjectController::class . ':index');

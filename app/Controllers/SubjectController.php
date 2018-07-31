@@ -2,11 +2,18 @@
 
 namespace App\Controllers;
 
-class SubjectController 
+class SubjectController extends BaseController
 {
-    public function index()
+    protected $interface;
+
+    public function __construct(ContainerInterface $interface)
     {
-        return 'All subjects';
+        $this->interface = $interface;
+    }
+
+    public function index($request, $response)
+    {
+        return $this->interface->view->render($response, 'subjects/index.twig');
     }
 
     public function show()
