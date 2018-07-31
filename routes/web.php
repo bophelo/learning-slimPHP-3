@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Controllers\SubjectController;
 
 $app->get('/', function ($request, $response) {
     return $this->view->render($response,'home.twig');
@@ -99,4 +100,9 @@ $app->get('/users/{username}', function ($request, $response, $args) {
 $app->get('/uzer', function() {
     $user = new User;
     var_dump($user);
+});
+
+$app->group('/subjects', function() {
+    $this->get('', SubjectController::class . ':index');
+    $this->get('/{id}', SubjectController::class . ':show');
 });
