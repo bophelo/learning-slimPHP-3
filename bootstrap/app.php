@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . '/../vendor/autoload.php';
+
 //app instance
 $app = new \Slim\App([
     'settings' => [

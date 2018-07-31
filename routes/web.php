@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 $app->get('/', function ($request, $response) {
     return $this->view->render($response,'home.twig');
 })->setName('home');
@@ -92,4 +94,9 @@ $app->get('/users/{username}', function ($request, $response, $args) {
     return $this->view->render($response, 'users/profile.twig', [
         'user' => $user
     ]);
+});
+
+$app->get('/uzer', function() {
+    $user = new User;
+    var_dump($user);
 });
