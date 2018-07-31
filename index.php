@@ -13,6 +13,10 @@ $app = new \Slim\App([
 //not reinstantiated multiple times
 $container  = $app->getContainer();
 
+$container['db'] = function () {
+    return new PDO('mysql:host=localhost;dbname=slim','root','&6rUB3,_9EyD');
+};
+
 // Register component on container
 $container['view'] = function ($container) {
     $view = new \Slim\Views\Twig(__DIR__ . '/resources/views', [
@@ -106,6 +110,12 @@ $app->group('/topics', function () {
         echo 'Post Topic';
     });
 
+});
+
+$app->get('/db', function () {
+    $db_users = $this->db->query("SELECT * FROM users")->fetchAll(PDO::FETCH_OBJ);
+
+    var_dump($db_users);
 });
 
 $app->run();
