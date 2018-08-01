@@ -4,6 +4,7 @@ use App\Models\User;
 use App\Controllers\SubjectController;
 use App\Controllers\UserController;
 use App\Controllers\ExampleController;
+use App\Controllers\TopicController;
 
 $app->get('/', function ($request, $response) {
     return $this->view->render($response,'home.twig');
@@ -113,3 +114,6 @@ $app->group('/subjects', function() {
 
 $app->get('/topicz', ExampleController::class . ':store')->setName('topicz.store');
 $app->get('/topicz/{id}', ExampleController::class . ':show')->setName('topicz.show');
+
+$app->get('/topic', TopicController::class . ':store')->setName('topic.index');
+$app->get('/topic/{id}', TopicController::class . ':show')->setName('topic.show');

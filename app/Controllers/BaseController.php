@@ -12,4 +12,9 @@ abstract class BaseController
     {
         $this->interface = $interface;
     }
+
+    protected function render404($response)
+    {
+        return $this->interface->view->render($response->withStatus(404), 'errors/404.twig');
+    }
 }
