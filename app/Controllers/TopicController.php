@@ -7,7 +7,17 @@ class TopicController extends BaseController
 {
     public function index($request, $response)
     {
-        return $response->withStatus(404);
+        //return $response->withStatus(404);
+        $topics = $this->interface->db->query("SELECT * FROM topics")->fetchAll(PDO::FETCH_OBJ);
+
+        if (true) {
+            return $response->withJson([
+                'error' => 'That Topic Does Not Exist.'
+            ], 404);
+        }
+
+        return $response->withJson($topics, 200);
+
     }
 
     public function show($request, $response, $args)
@@ -23,5 +33,7 @@ class TopicController extends BaseController
         if ($topic === false) {
             return $this->render404($response);
         }
+
+        var_dump($topic);
     }
 }

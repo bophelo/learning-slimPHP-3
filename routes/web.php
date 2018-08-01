@@ -115,5 +115,5 @@ $app->group('/subjects', function() {
 $app->get('/topicz', ExampleController::class . ':store')->setName('topicz.store');
 $app->get('/topicz/{id}', ExampleController::class . ':show')->setName('topicz.show');
 
-$app->get('/topic', TopicController::class . ':store')->setName('topic.index');
+$app->get('/topic', TopicController::class . ':index');
 $app->get('/topic/{id}', TopicController::class . ':show')->setName('topic.show');
