@@ -34,4 +34,13 @@ $container['view'] = function ($container) {
     return $view;
 };
 
+$middleware = function($request, $response, $next) {
+
+    $response->getBody()->write('Before');
+    $response = $next($request, $response);//call next middleware in the stack, do something afterward
+    $response->getBody()->write('After');
+
+    return $response;
+};
+
 require __DIR__ . '/../routes/web.php';

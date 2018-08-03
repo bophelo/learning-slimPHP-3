@@ -63,7 +63,7 @@ $app->get('/userz/{id}', function ($request,$response, $args) { //[/]parameter i
     ];
 
     return $this->view->render($response, 'profile.twig', compact('user'));
-});
+})->add($middleware);
 
 $app->group('/topics', function () {
 
