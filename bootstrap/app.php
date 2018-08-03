@@ -2,6 +2,8 @@
 
 session_start();
 
+unset($_SESSION['user_id']);
+
 require __DIR__ . '/../vendor/autoload.php';
 
 //app instance

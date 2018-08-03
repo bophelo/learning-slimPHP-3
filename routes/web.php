@@ -5,8 +5,9 @@ use App\Controllers\SubjectController;
 use App\Controllers\UserController;
 use App\Controllers\ExampleController;
 use App\Controllers\TopicController;
+use App\Middleware\RedirectIfUnauthenticated;
 
-$authenticated = function ($request, $response, $next) use ($container) {
+/*$authenticated = function ($request, $response, $next) use ($container) {
 
     if (!isset($_SESSION['user_id'])) {
         $response = $response->withRedirect($container->router->pathFor('login'));
@@ -21,7 +22,7 @@ $token = function ($request, $response, $next) {
 
     $request = $request->withAttribute('token', 'abc123');
     return $next($request, $response);
-};
+};*/
 
 $app->get('/', function ($request, $response) {
     return $this->view->render($response,'home.twig');
@@ -130,7 +131,7 @@ $app->group('/subjects', function() {
 });
 
 $app->get('/topicz', ExampleController::class . ':store')->setName('topicz.store');
-$app->get('/topicz/{id}', ExampleController::class . ':show')->setName('topicz.show')->add($authenticated)->add($token);
+$app->get('/topicz/{id}', ExampleController::class . ':show')->setName('topicz.show')->add(new RedirectIfUnauthenticated);
 
 $app->get('/topic', TopicController::class . ':index');
 $app->get('/topic/{id}', TopicController::class . ':show')->setName('topic.show');
