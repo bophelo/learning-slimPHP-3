@@ -6,6 +6,23 @@ use App\Controllers\UserController;
 use App\Controllers\ExampleController;
 use App\Controllers\TopicController;
 
+$authenticated = function ($request, $response, $next) use ($container) {
+
+    if (!isset($_SESSION['user_id'])) {
+        $response = $response->withRedirect($container->router->pathFor('login'));
+    }
+    //$response->getBody()->write('abc');
+
+    return $next($request, $response);
+
+};
+
+$token = function ($request, $response, $next) {
+
+    $request = $request->withAttribute('token', 'abc123');
+    return $next($request, $response);
+};
+
 $app->get('/', function ($request, $response) {
     return $this->view->render($response,'home.twig');
 })->setName('home');
@@ -113,7 +130,11 @@ $app->group('/subjects', function() {
 });
 
 $app->get('/topicz', ExampleController::class . ':store')->setName('topicz.store');
-$app->get('/topicz/{id}', ExampleController::class . ':show')->setName('topicz.show');
+$app->get('/topicz/{id}', ExampleController::class . ':show')->setName('topicz.show')->add($authenticated)->add($token);
 
 $app->get('/topic', TopicController::class . ':index');
 $app->get('/topic/{id}', TopicController::class . ':show')->setName('topic.show');
+
+$app->get('/login', function () {
+    return 'Login';
+})->setName('login');

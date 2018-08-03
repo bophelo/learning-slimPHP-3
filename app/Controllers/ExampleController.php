@@ -11,6 +11,8 @@ class ExampleController extends BaseController
 
     public function show($request, $response, $args)
     {
+        echo $request->getAttribute('token');
+        die();
         return 'Show Topic ' . $args['id'];
     }
 }

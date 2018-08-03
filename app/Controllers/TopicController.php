@@ -34,6 +34,6 @@ class TopicController extends BaseController
             return $this->render404($response);
         }
 
-        var_dump($topic);
+        return $response->withJson($topic, 200);
     }
 }
