@@ -10,7 +10,7 @@ class TopicController extends BaseController
         //return $response->withStatus(404);
         $topics = $this->interface->db->query("SELECT * FROM topics")->fetchAll(PDO::FETCH_OBJ);
 
-        if (true) {
+        if (empty($topics)) {
             return $response->withJson([
                 'error' => 'That Topic Does Not Exist.'
             ], 404);
