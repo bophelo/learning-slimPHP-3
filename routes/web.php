@@ -6,6 +6,9 @@ use App\Controllers\UserController;
 use App\Controllers\ExampleController;
 use App\Controllers\TopicController;
 use App\Middleware\RedirectIfUnauthenticated;
+use App\Middleware\IpFilter;
+
+$app->add(new IpFilter($container['db']));
 
 /*$authenticated = function ($request, $response, $next) use ($container) {
 
@@ -23,10 +26,6 @@ $token = function ($request, $response, $next) {
     $request = $request->withAttribute('token', 'abc123');
     return $next($request, $response);
 };*/
-
-$app->get('/', function ($request, $response) {
-    return $this->view->render($response,'home.twig');
-})->setName('home');
 
 $app->get('/users', function ($request, $response) {
     $users = [
@@ -130,12 +129,6 @@ $app->group('/subjects', function() {
     $this->get('/{id}', SubjectController::class . ':show')->setName('subjects.show');
 });
 
-$app->group('', function () {
-    $this->get('/topicz', ExampleController::class . ':store')->setName('topicz.store');
-    $this->get('/topicz/create', ExampleController::class . ':create')->setName('topicz.create');//order routes with wildcards last
-    $this->get('/topicz/{id}', ExampleController::class . ':show')->setName('topicz.show');
-})->add(new RedirectIfUnauthenticated($container['router']));
-
 $app->group('', function () {//e.g a group for already signed in users
     $this->get('/topicz', ExampleController::class . ':store')->setName('topicz.store');
     $this->get('/topicz/create', ExampleController::class . ':create')->setName('topicz.create');//order routes with wildcards last
@@ -146,6 +139,10 @@ $app->group('', function () {//e.g a group for already signed in users
 $app->get('/topic', TopicController::class . ':index');
 $app->get('/topic/{id}', TopicController::class . ':show')->setName('topic.show');
 
-$app->get('/login', function () {
+$app->get('/', function ($request, $response) {
+    return $this->view->render($response,'home.twig');
+})->setName('home');
+
+$app->get('/login', function ($request, $response) {
     return 'Login';
 })->setName('login');
