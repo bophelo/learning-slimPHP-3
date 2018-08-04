@@ -47,4 +47,10 @@ $middleware = function($request, $response, $next) {
     return $response;
 };
 
+$container['notFoundHandler'] = function ($interface) {
+    return function ($request, $response) use ($interface) {
+        return $interface->view->render($response,'errors/404.twig')->withStatus(404);
+    };
+};
+
 require __DIR__ . '/../routes/web.php';
