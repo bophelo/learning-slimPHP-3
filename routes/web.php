@@ -131,7 +131,7 @@ $app->group('/subjects', function() {
 });
 
 $app->get('/topicz', ExampleController::class . ':store')->setName('topicz.store');
-$app->get('/topicz/{id}', ExampleController::class . ':show')->setName('topicz.show')->add(new RedirectIfUnauthenticated);
+$app->get('/topicz/{id}', ExampleController::class . ':show')->setName('topicz.show')->add(new RedirectIfUnauthenticated($container['router']));
 
 $app->get('/topic', TopicController::class . ':index');
 $app->get('/topic/{id}', TopicController::class . ':show')->setName('topic.show');
