@@ -130,8 +130,18 @@ $app->group('/subjects', function() {
     $this->get('/{id}', SubjectController::class . ':show')->setName('subjects.show');
 });
 
-$app->get('/topicz', ExampleController::class . ':store')->setName('topicz.store');
-$app->get('/topicz/{id}', ExampleController::class . ':show')->setName('topicz.show')->add(new RedirectIfUnauthenticated($container['router']));
+$app->group('', function () {
+    $this->get('/topicz', ExampleController::class . ':store')->setName('topicz.store');
+    $this->get('/topicz/create', ExampleController::class . ':create')->setName('topicz.create');//order routes with wildcards last
+    $this->get('/topicz/{id}', ExampleController::class . ':show')->setName('topicz.show');
+})->add(new RedirectIfUnauthenticated($container['router']));
+
+$app->group('', function () {//e.g a group for already signed in users
+    $this->get('/topicz', ExampleController::class . ':store')->setName('topicz.store');
+    $this->get('/topicz/create', ExampleController::class . ':create')->setName('topicz.create');//order routes with wildcards last
+    $this->get('/topicz/{id}', ExampleController::class . ':show')->setName('topicz.show');
+})->add(new RedirectIfUnauthenticated($container['router']));
+
 
 $app->get('/topic', TopicController::class . ':index');
 $app->get('/topic/{id}', TopicController::class . ':show')->setName('topic.show');

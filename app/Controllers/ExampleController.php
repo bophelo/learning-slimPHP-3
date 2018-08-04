@@ -13,4 +13,9 @@ class ExampleController extends BaseController
     {
         return 'Show Topic ' . $args['id'];
     }
+
+    public function create($request, $response, $args)
+    {
+        return 'Create Topic ';
+    }
 }
